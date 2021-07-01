@@ -51,6 +51,13 @@ func appendSlicePractice(x []int, y ...int) []int {
 	return z
 }
 
+// Practice, remove ont param of slice
+func remove(s []int, n int) []int {
+	copy(s[n:], s[n+1:])
+	// 因为是重用底层数组，所以此时 s 为 {5, 6, 8, 9, 9}，最后的 9 元素是原底层数组的元素
+	// 所以需要返回 s[:len(s)-1] 舍弃掉后面的
+	return s[:len(s)-1]
+}
 
 func main() {
 	var x, y []int
@@ -69,4 +76,9 @@ func main() {
 
 	 h = appendSlicePractice(m, n...)
 	 fmt.Printf("h is: %v \n", h)
+
+	 // 使用 slice 模拟 stack, 删除 slice 中一个元素
+	 s := []int{5, 6 , 7, 8 ,9}
+	 remove(s, 2)
+
 }
